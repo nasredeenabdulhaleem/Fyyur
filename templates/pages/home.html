@@ -1,0 +1,57 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Fyyur{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-6">
+		<h1>Fyyur 🔥</h1>
+		<p class="lead">Where musical artists meet musical venues.</p>
+		<h3>
+			<a href="/venues"><button class="btn btn-primary btn-lg">Find a venue</button></a>
+			<a href="/venues/create"><button class="btn btn-default btn-lg">Post a venue</button></a>
+		</h3>
+		<h3>
+			<a href="/artists"><button class="btn btn-primary btn-lg">Find an artist</button></a>
+			<a href="/artists/create"><button class="btn btn-default btn-lg">Post an artist</button></a>
+		</h3>
+		<p class="lead">Publicize about your show for free.</p>
+		<h3>
+			<a href="/shows/create"><button class="btn btn-default btn-lg">Post a show</button></a>
+		</h3>
+	</div>
+	<div class="col-sm-6 hidden-sm hidden-xs">
+		<img id="front-splash" src="{{ url_for('static',filename='img/front-splash.jpg') }}"
+			alt="Front Photo of Musical Band" />
+	</div>
+</div>
+<section class="row">
+	<h3>Recent Listed Venues</h3>
+	<div class="row">
+		{%for venue in venues %}
+		<div class="col-sm-4">
+			<div class="tile">
+				<h4>{{ venue.name }}</h4>
+				<h4>ID: {{ venue.id }}</h4>
+				<img src="{{ venue.image_link }}" />
+				<h5><a href="/venues/{{ venue.id }}">{{ venue.name }}</a></h5>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+
+<section class="row">
+	<h3>Recent Listed Artists</h3>
+	<div class="row">
+		{%for artist in artists %}
+		<div class="col-sm-4">
+			<div class="tile tile-show">
+				<h4>{{ artist.name }}</h4>
+				<h4>ID: {{ artist.id }}</h4>
+				<img src="{{ artist.image_link }}" />
+				<h5><a href="/artists/{{ artist.id }}">{{ artist.name }}</a></h5>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+{% endblock %}
